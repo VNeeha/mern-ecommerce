@@ -27,7 +27,14 @@ const app=express();
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 
+// ROUTING
+app.use('/api/auth',authRouter);
+app.use('/api/shop',shopRouter);
+app.use('/api/admin',adminRouter);
+app.use('/api/cart',cartRouter);
+app.use('/api/profile',profileRouter);
 
+// UNDEFINED PATH HANDLER
 app.use(errorController.errorHandler)
 
 // CONNECTING TO DATABASE AND DEFINING PORT FRO SERVER TO LISTEN

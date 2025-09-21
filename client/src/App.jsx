@@ -1,12 +1,19 @@
-import './App.css'
+// EXTERNAL IMPORTS
+import { RouterProvider } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-function App() {
+// LOCAL IMPORTS
+import router from "./routes/index.jsx";
+import { userActions } from "./store/userSlice.js";
 
-  return (
-    <>
-      <h1>ecommerce</h1>
-    </>
-  )
-}
+const App = () => {
+  const dispatch = useDispatch();
 
-export default App
+  const tempUser = JSON.parse(localStorage.getItem("user"));
+  if (tempUser) {
+    dispatch(userActions.signInUser({ user: tempUser }));
+  }
+  return <RouterProvider router={router} />;
+};
+
+export default App;
